@@ -6,6 +6,8 @@ SwissAdmin can either be included in your project or can used from the CLI.
 
 I find it best to install swissadmin in your global gemset.
 
+### This only works on Linux
+
 ## Things that make swissadmin cool.
 
 1. It offers just the right amount of information about the system/host your are running it on.
@@ -33,7 +35,27 @@ Or install it yourself as:
 
 ## Usage
 
+```ruby
+swissadmin 
+Commands:
+  swissadmin help [COMMAND]   # Describe available commands or one specific command
+  swissadmin host SUBCOMMAND  # Returns information about the host
+```
+
 ### Host
+You can see what commands are available for the ```command```
+
+* only commands listed below are funcitonal currenlty
+
+```ruby
+Commands:
+  swissadmin host cpu count       # Number of cpu's
+  swissadmin host first_ipv4      # First ipv4 interface
+  swissadmin host help [COMMAND]  # Describe subcommands or one specific subcommand
+  swissadmin host ip_addresses    # All the ip addresses on this host
+  swissadmin host name            # Hostname
+```
+
 ```ruby
 swissadmin host name #=> foo.local
 ```
