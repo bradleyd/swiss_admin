@@ -60,7 +60,8 @@ Commands:
 swissadmin hardware cpus #=> 4
 ```
 
-```ruby
+```ruby 
+swissadmin hardware memory #=> 
 MemTotal           7873568
 MemFree            3731188
 Buffers            164064
@@ -120,7 +121,7 @@ Commands:
   swissadmin user home            # Current user's home directory
 ```
 
-``ruby
+```ruby
 swissadmin user current #=> bradleyd
 ```
 
