@@ -75,10 +75,16 @@ Returns information about the host
 commands:
   swissadmin host help [COMMAND]  # Describe subcommands or one specific subcommand
   swissadmin host name            # Hostname
+  swissadmin host loadavg         # Current system load 
 ```
 
 ```ruby
 swissadmin host name #=> foo.local
+```
+
+```ruby
+# 1,5,15,number of currently running processes/total number of processes, pid
+swissadmin host loadavg #=> 0.10 0.19 0.23 1/742 24553
 ```
 
 ### Network

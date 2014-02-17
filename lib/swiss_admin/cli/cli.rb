@@ -1,6 +1,6 @@
 require "thor"
 #require_relative "host_cli"
-#require_relative "hardware_cli"
+require_relative "hardware_cli"
 #require_relative "network_cli"
 #require_relative "user_cli"
 module SwissAdmin

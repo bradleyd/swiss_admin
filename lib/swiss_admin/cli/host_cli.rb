@@ -5,6 +5,11 @@ module SwissAdmin
     def name
       $stdout.puts SwissAdmin::Host.name
     end
+
+    desc "loadavg", "Current system load"
+    def loadavg
+      $stdout.puts SwissAdmin::Host.loadavg
+    end
   end
 end
 

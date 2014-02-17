@@ -10,4 +10,11 @@ class CLIHostTest < MiniTest::Test
       SwissAdmin::CLI.start %w{ host name }
     }
   end
+  
+  def test_cli_host_loadavg_returns_system_load
+    assert_output(/[\d\.]+\W+[\d\.]+\W+[\d\.]+\W+[\d\/]+\W+\d+/) { 
+      SwissAdmin::CLI.start %w{ host loadavg }
+    }
+  end
+
 end
