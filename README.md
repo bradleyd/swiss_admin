@@ -209,7 +209,7 @@ end
 ```
 
 * Note, we are calling ```Foo``` class from ```lib/``` instead of just creating it here
-* This is so we can use ```swissadmin``` as library in another project and forget the CLI
+* This is so we can use ```swissadmin``` as library in another project and forgo the CLI
 
 
 Next, we need to tell ```CLI``` about this new command.
