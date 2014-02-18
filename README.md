@@ -136,3 +136,98 @@ swissadmin user home #=> /home/bradleyd
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Add a new command
+### This is a work in progress and might not be worth a dam
+
+To add a new command you must understand the directory structures of ```lib/``` and ```cli/```
+
+### lib/
+
+```bash
+lib/swiss_admin/
+├── hardware
+│   ├── cpus.rb
+│   └── memory.rb
+├── host
+│   └── host.rb
+├── network
+│   └── network.rb
+├── user
+│   └── user.rb
+```
+
+### cli/
+```bash
+lib/swiss_admin/cli/
+├── cli.rb
+├── hardware_cli.rb
+├── host_cli.rb
+├── network_cli.rb
+└── user_cli.rb
+```
+
+Let's say you have a need for a command called--you guessed it--```foo```
+
+```foo``` will give you the ultimate answer.
+
+* I will assume you have written tests for ```foo``` you know who you are!
+
+If ```foo``` does not fit in any category from ```lib/``` then you would create a new one.  
+
+Create a file and directory called foo and adjust to your liking.
+
+```ruby
+# foo/foo.rb
+module SwissAdmin
+  class Foo
+    def self.answer
+      "42"
+    end
+  end
+end
+```
+
+Run your tests...green I presume.
+
+Create another file under ```cli/``` cleverly called ```foo_cli.rb```
+
+```ruby 
+module SwissAdmin
+  module Commands
+    class Foo < Thor
+      namespace :foo
+
+      desc "answer", "ultimate answer"
+      def answer
+        $stdout.puts SwissAdmin::Foo.answer
+      end
+
+    end
+  end
+end
+```
+
+* Note, we are calling ```Foo``` class from ```lib/``` instead of just creating it here
+* This is so we can use ```swissadmin``` as library in another project and forget the CLI
+
+
+Next, we need to tell ```CLI``` about this new command.
+
+```ruby
+#lib/cli/cli.rb
+
+module SwissAdmin
+  class CLI < Thor
+    #....snippet....
+    desc "foo SUBCOMMAND", "Returns the ultimate answer"
+    subcommand "foo", SwissAdmin::Commands::Foo
+  end
+end
+```
+
+This will give ```swissadmin``` the ultimate power and bestow it upon you ;)
+
+```ruby
+swissadmin foo answer #=> 42
+```

@@ -1,20 +1,16 @@
 require "thor"
-#require_relative "host_cli"
-require_relative "hardware_cli"
-#require_relative "network_cli"
-#require_relative "user_cli"
 module SwissAdmin
   class CLI < Thor
     desc "host SUBCOMMAND", "Returns information about the host"
-    subcommand "host", Host
+    subcommand "host", SwissAdmin::Commands::Host
 
     desc "hardware SUBCOMMAND", "Returns information about host hardware"
-    subcommand "hardware", Hardware
+    subcommand "hardware", SwissAdmin::Commands::Hardware
     
     desc "network SUBCOMMAND", "Returns information about host network"
-    subcommand "network", Network
+    subcommand "network", SwissAdmin::Commands::Network
 
     desc "user SUBCOMMAND", "Returns information about user(s) on host"
-    subcommand "user", User
+    subcommand "user", SwissAdmin::Commands::User
   end
 end
