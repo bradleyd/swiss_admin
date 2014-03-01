@@ -116,9 +116,18 @@ Return information about user(s)
 
 ```bash
 Commands:
+  swissadmin user active          # All active users
   swissadmin user current         # Current user
   swissadmin user help [COMMAND]  # Describe subcommands or one specific subcommand
   swissadmin user home            # Current user's home directory
+```
+
+```ruby
+swissadmin user active #=>
+bradleyd tty7     :0                2days init --user
+bradleyd pts/0    :0               57:24  bash
+bradleyd pts/3    :0                1:06m bash
+bradleyd pts/8    :0.0              4.00s w -s -h
 ```
 
 ```ruby

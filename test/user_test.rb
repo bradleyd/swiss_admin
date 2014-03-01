@@ -10,4 +10,8 @@ class UserTest < Minitest::Test
     assert_equal SwissAdmin::TestHelpers.home, 
       SwissAdmin::User.home
   end
+
+  def test_active_returns_all_logged_in_users
+    assert SwissAdmin::User.active
+  end
 end

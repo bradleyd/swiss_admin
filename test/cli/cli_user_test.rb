@@ -18,5 +18,11 @@ class CLIUserTest < MiniTest::Test
       SwissAdmin::CLI.start %w{ user home }
     }
   end
+ 
+  def test_cli_active_returns_active_users
+    assert_output(/#{@current.chomp}/) {
+      SwissAdmin::CLI.start %w{ user active }
+    }
+  end
   
 end

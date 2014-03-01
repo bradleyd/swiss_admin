@@ -13,6 +13,12 @@ module SwissAdmin
       def home
         $stdout.puts SwissAdmin::User.home
       end
+
+      desc "active", "All active users"
+      def active
+        $stdout.puts SwissAdmin::User.active[:output]
+      end
+
     end
   end
 end
