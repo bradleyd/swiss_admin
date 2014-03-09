@@ -11,7 +11,6 @@ module SwissAdmin
     end
 
     get "/host_info" do
-      #fetch swiss_admin
       @memory       = SwissAdmin::Hardware.memory.inject({}) { |a,d| a[d[0]] = d[1]; a }
       @host_name    = SwissAdmin::Host.name
       @load_average = SwissAdmin::Host.loadavg
@@ -42,5 +41,3 @@ module SwissAdmin
 
   end
 end
-
-SwissAdmin::HostInfo.run!
