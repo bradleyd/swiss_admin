@@ -1,8 +1,11 @@
+ENV['RACK_ENV'] = 'test'
 require "socket"
 require "minitest"
 require "minitest/autorun"
 require "minitest/pride"
 require "swiss_admin"
+require 'rack/test'
+require File.expand_path '../../lib/swiss_admin/web/app.rb', __FILE__
 
 module SwissAdmin
   module TestHelpers
