@@ -8,22 +8,36 @@ class HostInfoTest < MiniTest::Unit::TestCase
   end
 
   def test_it_retruns_hardware_info
-    get '/info'
+    get '/host_info'
     assert last_response.ok?
     assert_match /Memory Total:/ , last_response.body
   end
 
   def test_it_retruns_host_name
-    get '/info'
+    get '/host_info'
     assert last_response.ok?
     assert_match /Host Name:/ , last_response.body
   end
 
   def test_it_retruns_host_load
-    get '/info'
+    get '/host_info'
     assert last_response.ok?
     assert_match /Load Average:/ , last_response.body
   end
+
+  def test_it_retruns_hardware_cpus
+    get '/host_info'
+    assert last_response.ok?
+    assert_match /Total Cpus:/ , last_response.body
+  end
+
+  def test_it_retruns_network_ipaddresses
+    get '/host_info'
+    assert last_response.ok?
+    assert_match /IP Addresses:/ , last_response.body
+  end
+
+
 
 
 

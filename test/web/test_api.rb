@@ -13,6 +13,13 @@ class HostInfoAPITest < MiniTest::Unit::TestCase
     assert_match /MemTotal/ , last_response.body
   end
 
+  def test_it_retruns_hardware_cpus
+    get '/api/hardware/cpus'
+    assert last_response.ok?
+    assert_match /cpus/ , last_response.body
+  end
+
+
   def test_it_retruns_host_name
     get '/api/host/name'
     assert last_response.ok?

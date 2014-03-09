@@ -1,1 +1,1 @@
-require "swiss_admin/network/network"
+require_relative "network/network"

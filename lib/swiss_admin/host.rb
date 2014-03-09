@@ -1,1 +1,1 @@
-require "swiss_admin/host/host"
+require_relative "host/host"

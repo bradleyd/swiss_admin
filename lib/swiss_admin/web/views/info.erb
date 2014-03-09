@@ -1,3 +1,60 @@
-Memory Total: <%= @memory["MemTotal"] %>
-Host Name: <%= @host_name %>
-Load Average: <%= @load_average %>
+<div class="sixteen columns">
+<table id="host">
+  <thead>
+    <tr>
+      <th>Host Name</th>
+      <th>Load Average</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @host_name %></td>
+      <td><%= @load_average %></td>
+    </tr>
+  </tbody>
+</table>
+<br class="clear" />
+</div>
+
+<div class="sixteen columns">
+<table id="hardware">
+  <thead>
+    <tr>
+      <th>Memory Total</th>
+      <th>Memory Free</th>
+      <th>Total CPUS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @memory["MemTotal"] %></a></td>
+      <td><%= @memory["MemFree"] %></a></td>
+      <td><%= @cpus %></td>
+    </tr>
+  </tbody>
+</table>
+<br class="clear" />
+</div>
+
+
+<div class="sixteen columns">
+<table id="network">
+  <thead>
+    <tr>
+      <th>IP Address</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ip_addresses.each do |ip| %>
+      <tr>
+        <td><%= ip[:ip_address] %></a></td>
+        <td><%= ip[:name] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br class="clear" />
+</div>
+
+

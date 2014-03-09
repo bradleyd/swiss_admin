@@ -1,2 +1,2 @@
-require "swiss_admin/hardware/memory"
-require "swiss_admin/hardware/cpus"
+require_relative "hardware/memory"
+require_relative "hardware/cpus"

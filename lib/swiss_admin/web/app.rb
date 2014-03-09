@@ -1,16 +1,22 @@
 require 'sinatra'
 require "json"
+require_relative "../hardware"
+require_relative "../host"
+require_relative "../network"
+
 module SwissAdmin
   class HostInfo < Sinatra::Base
     get '/test' do
       "hello world"
     end
 
-    get "/info" do
+    get "/host_info" do
       #fetch swiss_admin
       @memory       = SwissAdmin::Hardware.memory.inject({}) { |a,d| a[d[0]] = d[1]; a }
       @host_name    = SwissAdmin::Host.name
       @load_average = SwissAdmin::Host.loadavg
+      @cpus         = SwissAdmin::Hardware.cpus
+      @ip_addresses = SwissAdmin::Network.ip_addresses
       erb :info
     end
 
@@ -29,5 +35,12 @@ module SwissAdmin
       JSON.generate(SwissAdmin::Hardware.memory.inject({}) { |a,d| a[d[0]] = d[1]; a })
     end
 
+    get "/api/hardware/cpus" do
+      JSON.generate(cpus: SwissAdmin::Hardware.cpus)
+    end
+
+
   end
 end
+
+SwissAdmin::HostInfo.run!
