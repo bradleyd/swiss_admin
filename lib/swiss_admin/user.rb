@@ -1,1 +1,1 @@
-require "swiss_admin/user/user"
+require_relative "user/user"

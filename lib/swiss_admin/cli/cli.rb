@@ -12,5 +12,8 @@ module SwissAdmin
 
     desc "user SUBCOMMAND", "Returns information about user(s) on host"
     subcommand "user", SwissAdmin::Commands::User
+
+    desc "web SUBCOMMAND", "A basic web ui with all of the hosts information"
+    subcommand "web", SwissAdmin::Commands::Web
   end
 end
