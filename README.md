@@ -138,6 +138,24 @@ swissadmin user current #=> bradleyd
 swissadmin user home #=> /home/bradleyd
 ```
 
+### Web
+```bash
+Commands:
+  swissadmin web help [COMMAND]  # Describe subcommands or one specific subcommand
+  swissadmin web start           # Start web server
+  swissadmin web stop            # Stop web server
+```
+
+```ruby
+swissadmin web start
+```
+This also gives you an API which you can query
+
+Every CLI command can be accessed via the REST API
+
+```ruby
+curl localhost:8080/api/host/loadavg #=> {"load_average":"0.29 0.29 0.28 2/972 27659\n"}
+```
 ## Contributing
 
 1. Fork it
