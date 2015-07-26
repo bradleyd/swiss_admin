@@ -2,6 +2,8 @@
 
 [![Gem Version](https://badge.fury.io/rb/swiss_admin.svg)](http://badge.fury.io/rb/swiss_admin)
 
+[![Build Status](https://travis-ci.org/bradleyd/swiss_admin.svg)](https://travis-ci.org/bradleyd/swiss_admin)
+
 A generous, but not too bloated, system/host helpers for any self respecting system administrator ;)
 
 SwissAdmin can either be included in your project or can used from the CLI.
