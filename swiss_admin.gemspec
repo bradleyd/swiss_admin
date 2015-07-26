@@ -22,8 +22,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "minitest"
   spec.add_development_dependency "rack-test"
-  spec.add_dependency "shelltastic"
-  spec.add_dependency "sinatra"
-  spec.add_dependency "open4"
-  spec.add_dependency "thor"
+  spec.add_dependency "shelltastic", "~> 0.4"
+  spec.add_dependency "sinatra", "~> 1.4"
+  spec.add_dependency "open4", "~> 1.3"
+  spec.add_dependency "thor", "~> 0.18"
 end
