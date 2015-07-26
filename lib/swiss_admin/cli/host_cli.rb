@@ -16,4 +16,3 @@ module SwissAdmin
     end
   end
 end
-

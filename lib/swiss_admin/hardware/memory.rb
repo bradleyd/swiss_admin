@@ -30,6 +30,7 @@ module SwissAdmin
                else
                  "unknown"
                end
+      memory.inject({}) { |a,d| a[d[0]] = d[1]; a }
     end
   end
 end

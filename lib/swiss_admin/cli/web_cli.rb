@@ -35,6 +35,7 @@ module SwissAdmin
       # @todo need to break out all the file to separate module
       desc "stop", "Stop web server"
       def stop
+        begin
           pid = IO.read("/tmp/swissadmin.pid")
           res = Commands.app_running? pid
           if res == :running
@@ -42,6 +43,21 @@ module SwissAdmin
           end
           File.delete("/tmp/swissadmin.pid")
           $stdout.puts "Stopped" || res != :running
+        rescue Errno::ENOENT => e
+          $stdout.puts e.message
+          return 0
+        end
+      end
+
+      desc "status", "Get status of the web server"
+      def status
+        running = false
+        if File.exist?("/tmp/swissadmin.pid")
+          pid = IO.read("/tmp/swissadmin.pid")
+          res = Commands.app_running? pid
+          running = true if res == :running
+        end
+        $stdout.puts (running ? "Running" : "Not Running")
       end
     end
   end

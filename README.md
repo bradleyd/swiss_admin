@@ -11,8 +11,8 @@ I find it best to install swissadmin in your global gemset.
 ## Things that make swissadmin cool.
 
 1. It offers just the right amount of information about the system/host your are running it on.
-2. Provides a TCP server for network testing. 
-3. Provides a DRb server to query host for information.
+2. Provides a web server for REST calls.
+3. Provides a DRb server to query host for information. (see todo)
 4. Everytime you use it puppies and rainbows shoot into the sky.
 
 There a tons of tools that do similar stuff, but I find them to contain way to much information.
@@ -258,3 +258,10 @@ This will give ```swissadmin``` the ultimate power and bestow it upon you ;)
 ```ruby
 swissadmin foo answer #=> 42
 ```
+
+### TODO
+
+* create DRB server
+* Lock down web server with basic auth or token
+* Show all commands available in CLI
+* Show all commands available in Web
