@@ -143,7 +143,14 @@ swissadmin user home #=> /home/bradleyd
 Commands:
   swissadmin web help [COMMAND]  # Describe subcommands or one specific subcommand
   swissadmin web start           # Start web server
+  Usage:
+  swissadmin start
+Options:
+  -p, [--port=PORT]  # Set port for web companion
+                     # Default: 8080
+
   swissadmin web stop            # Stop web server
+  swissadmin web status          # Status of the web server
 ```
 
 ```ruby
@@ -265,3 +272,4 @@ swissadmin foo answer #=> 42
 * Lock down web server with basic auth or token
 * Show all commands available in CLI
 * Show all commands available in Web
+* Write pid, port file path to `~/.swissadmin/.web.conf

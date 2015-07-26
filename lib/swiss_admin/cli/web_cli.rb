@@ -22,8 +22,11 @@ module SwissAdmin
       namespace :web
 
       desc "start", "Start web server"
-      method_option :pid_file, default: "/tmp/swissadmin.pid"
-      method_option :port, default: 8080
+      # must keep global state of pid file..yaml or marshall?
+      # at rack start create file with pid file info
+      # on stop read from file then do the thing
+      #method_option :pid_file, aliases: "-P", desc: "Set path for pid file", default: "/tmp/swissadmin.pid"
+      method_option :port, aliases: "-p", desc: "Set port for web companion", default: 8080
       def start
         $stdout.puts "Starting..."
         Rack::Server.start(app: SwissAdmin::HostInfo, 
