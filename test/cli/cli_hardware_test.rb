@@ -6,7 +6,7 @@ class CLIHardwareTest < MiniTest::Test
   end
 
   def test_cli_cpus_returns_cpus_count
-    assert_output("4\n") { 
+    assert_output(/\d+\n/) { 
       SwissAdmin::CLI.start %w{ hardware cpus }
     }
   end
