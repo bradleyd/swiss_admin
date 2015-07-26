@@ -24,7 +24,7 @@ module SwissAdmin
       "hello world"
     end
 
-    get "/info" do
+    get "/host_info" do
       @memory       = SwissAdmin::Hardware.memory
       @host_name    = SwissAdmin::Host.name
       @users        = SwissAdmin::User.active

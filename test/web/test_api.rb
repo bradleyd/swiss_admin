@@ -1,6 +1,6 @@
 require_relative "../test_helper"
 
-class HostInfoAPITest < MiniTest::Unit::TestCase
+class HostWebAPITest < Minitest::Test
   include Rack::Test::Methods
 
   def app

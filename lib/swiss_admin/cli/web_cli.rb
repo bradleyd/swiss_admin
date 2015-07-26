@@ -31,7 +31,7 @@ module SwissAdmin
         $stdout.puts "Starting..."
         Rack::Server.start(app: SwissAdmin::HostInfo, 
                            daemonize: true, 
-                           pid: options[:pid_file],
+                           pid: options[:pid_file] || "/tmp/swissadmin.pid",
                            Port: options[:port])
       end
 
