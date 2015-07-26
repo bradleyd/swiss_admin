@@ -16,8 +16,9 @@ I find it best to install swissadmin in your global gemset.
 
 1. It offers just the right amount of information about the system/host your are running it on.
 2. Provides a web server for REST calls.
-3. Provides a DRb server to query host for information. (see todo)
-4. Everytime you use it puppies and rainbows shoot into the sky.
+3. Pretty simple to add new commands
+4. Provides a DRb server to query host for information. (see todo)
+5. Everytime you use it puppies and rainbows shoot into the sky.
 
 There a tons of tools that do similar stuff, but I find them to contain way to much information.
 I do not have the brain capacity to remember all those arguments and parsing features. 
@@ -167,15 +168,9 @@ Every CLI command can be accessed via the REST API
 ```ruby
 curl localhost:8080/api/host/loadavg #=> {"load_average":"0.29 0.29 0.28 2/972 27659\n"}
 ```
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
 
 ## Add a new command
+
 ### This is a work in progress and might not be worth a dam
 
 To add a new command you must understand the directory structures of ```lib/``` and ```cli/```
@@ -277,3 +272,13 @@ swissadmin foo answer #=> 42
 * Show all commands available in CLI
 * Show all commands available in Web
 * Write pid, port file path to `~/.swissadmin/.web.conf
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+
