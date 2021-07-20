@@ -28,7 +28,7 @@ module SwissAdmin
       memory = if File.readable?("/proc/meminfo")
                  IO.read("/proc/meminfo").scan(/([a-zA-Z]+):\W+(\d+)/)
                else
-                 "unknown"
+                 return {"unknown"=>0}
                end
       memory.inject({}) { |a,d| a[d[0]] = d[1]; a }
     end
