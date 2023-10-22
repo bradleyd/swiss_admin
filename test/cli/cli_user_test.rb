@@ -1,7 +1,6 @@
 require_relative "../test_helper"
 
-
-class CLIUserTest < MiniTest::Test
+class CLIUserTest < Minitest::Test
   def setup
     @current = `whoami`
     @home    = ENV["HOME"]

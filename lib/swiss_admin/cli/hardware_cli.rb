@@ -1,4 +1,5 @@
 require "thor"
+require "swiss_admin/formatter"
 module SwissAdmin
   module Commands
     class Hardware < Thor
@@ -10,8 +11,9 @@ module SwissAdmin
       end
 
       desc "memory", "memory for host"
+      method_option :format, :aliases => "-f", :desc => "Format the output", :default => "text"
       def memory
-        print_table(SwissAdmin::Hardware.memory)
+        Formatter.output(SwissAdmin::Hardware.memory, options[:format])
       end
     end
   end

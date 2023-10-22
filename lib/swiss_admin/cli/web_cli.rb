@@ -22,15 +22,14 @@ module SwissAdmin
       namespace :web
 
       desc "start", "Start web server"
-      # must keep global state of pid file..yaml or marshall?
-      # at rack start create file with pid file info
-      # on stop read from file then do the thing
-      #method_option :pid_file, aliases: "-P", desc: "Set path for pid file", default: "/tmp/swissadmin.pid"
-      method_option :port, aliases: "-p", desc: "Set port for web companion", default: 8080
+      method_option :pid_file, aliases: "-P", desc: "Set path for pid file", default: "/tmp/swissadmin.pid"
+      method_option :debug, aliases: "-d", type: :boolean, desc: "debug", default: false
+      method_option :port, aliases: "-p", desc: "Set port for web companion", default: "8080"
       def start
-        $stdout.puts "Starting..."
-        Rack::Server.start(app: SwissAdmin::HostInfo, 
+        $stdout.puts "Starting server on #{options["port"]}"
+        Rack::Server.start(app: SwissAdmin::HostInfo,
                            daemonize: true, 
+                           debug: options[:debug] || false,
                            pid: options[:pid_file] || "/tmp/swissadmin.pid",
                            Port: options[:port])
       end

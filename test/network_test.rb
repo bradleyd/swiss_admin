@@ -1,7 +1,6 @@
 require_relative "test_helper"
 
-
-class NetworkTest < MiniTest::Test
+class NetworkTest < Minitest::Test
 
   def test_host_returns_ip_list
     assert_kind_of Array, SwissAdmin::Network.ip_addresses

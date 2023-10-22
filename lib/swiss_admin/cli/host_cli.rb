@@ -1,4 +1,6 @@
 require "thor"
+require "swiss_admin/formatter"
+
 module SwissAdmin
   module Commands
     class Host < Thor
@@ -10,8 +12,9 @@ module SwissAdmin
       end
 
       desc "loadavg", "Current system load"
+      method_option :format, :aliases => "-f", :desc => "Format the output", :default => "text"
       def loadavg
-        $stdout.puts SwissAdmin::Host.loadavg
+        Formatter.output(SwissAdmin::Host.loadavg, options[:format])
       end
     end
   end

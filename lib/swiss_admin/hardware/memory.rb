@@ -1,4 +1,4 @@
-
+require "json"
 module SwissAdmin
   class Hardware
     # @example
@@ -25,12 +25,22 @@ module SwissAdmin
     # SwapTotal — The total amount of swap available, in kilobytes.
     # SwapFree — The total amount of swap free, in kilobytes.
     def self.memory
+      data = Hash[:json, "", :raw, "", :table, [[]]]
+      human_readable_string = ""
       memory = if File.readable?("/proc/meminfo")
                  IO.read("/proc/meminfo").scan(/([a-zA-Z]+):\W+(\d+)/)
                else
-                 return {"unknown"=>0}
+                 # todo shell out and try free command
+                 [["no data available", 0]]
                end
-      memory.inject({}) { |a,d| a[d[0]] = d[1]; a }
+      memory.each do |m|
+         human_readable_string += m.join("=")
+         human_readable_string += "\n"
+      end
+      data[:raw] = human_readable_string
+      data[:json] = JSON.generate(memory.inject({}) { |a,d| a[d[0]] = d[1]; a })
+      data[:table] = [memory.inject({}) { |a,d| a[d[0]] = d[1]; a }]
+      data
     end
   end
 end

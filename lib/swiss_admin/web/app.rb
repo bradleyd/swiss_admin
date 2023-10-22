@@ -15,13 +15,13 @@ module SwissAdmin
         begin
           generate_json(params[:plugin] =>  klass.send(params[:plugin]))
         rescue NoMethodError => e
-          generate_json(error: "Plugin not implemented correctly or does not exist")
+          generate_json(error: "Plugin not implemented correctly or does not exist - #{e}")
         end
       end
     end
 
-    get '/test' do
-      "hello world"
+    get '/ping' do
+      "pong"
     end
 
     get "/host_info" do

@@ -1,6 +1,6 @@
 require_relative "test_helper"
 
-class HostTest < MiniTest::Test
+class HostTest < Minitest::Test
   def test_host_returns_host_name
     assert_equal SwissAdmin::TestHelpers.hostname,
       SwissAdmin::Host.name

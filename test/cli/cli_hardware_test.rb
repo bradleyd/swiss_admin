@@ -1,7 +1,6 @@
 require_relative "../test_helper"
 
-
-class CLIHardwareTest < MiniTest::Test
+class CLIHardwareTest < Minitest::Test
   def setup
   end
 

@@ -4,7 +4,7 @@ require "shelltastic"
 module SwissAdmin
   class User
     def self.current
-      ENV["USER"] || Etc.getlogin    
+      ENV["USER"] || Etc.getlogin || Etc.getpwuid.name
     end
 
     def self.home
