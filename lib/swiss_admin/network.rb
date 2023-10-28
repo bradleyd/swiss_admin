@@ -1,1 +1,1 @@
-require_relative "network/network"
+require_relative "network/ip"

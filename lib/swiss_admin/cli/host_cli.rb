@@ -5,14 +5,14 @@ module SwissAdmin
   module Commands
     class Host < Thor
       namespace :host
+      class_option :format, :aliases => "-f", :desc => "Format the output", :default => "text"
 
       desc "name", "Hostname"
       def name
-        $stdout.puts SwissAdmin::Host.name
+        Formatter.output(SwissAdmin::Host.name, options[:format])
       end
 
       desc "loadavg", "Current system load"
-      method_option :format, :aliases => "-f", :desc => "Format the output", :default => "text"
       def loadavg
         Formatter.output(SwissAdmin::Host.loadavg, options[:format])
       end

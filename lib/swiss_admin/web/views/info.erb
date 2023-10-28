@@ -46,7 +46,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @ip_addresses.each do |ip| %>
+    <% @ip_addresses[:table].each do |ip| %>
       <tr>
         <td><%= ip[:ip_address] %></a></td>
         <td><%= ip[:name] %></td>

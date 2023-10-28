@@ -3,7 +3,7 @@ require "swiss_admin/web/app"
 module SwissAdmin
   module Commands
     # @todo move to another module Commands::Helpers??
-    def self.app_running? pid
+    def self.app_running?(pid)
       pid = pid.to_i
       result = begin
                  Process.kill(0, pid)

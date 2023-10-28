@@ -171,7 +171,7 @@ curl localhost:8080/api/host/loadavg #=> {"load_average":"0.29 0.29 0.28 2/972 2
 
 ## Add a new command
 
-### This is a work in progress and might not be worth a dam
+### This is a work in progress and might not be worth a damn
 
 To add a new command you must understand the directory structures of ```lib/``` and ```cli/```
 
@@ -185,7 +185,7 @@ lib/swiss_admin/
 ├── host
 │   └── host.rb
 ├── network
-│   └── network.rb
+│   └── ip.rb
 ├── user
 │   └── user.rb
 ```
@@ -204,7 +204,7 @@ Let's say you have a need for a command called--you guessed it--```foo```
 
 ```foo``` will give you the ultimate answer.
 
-* I will assume you have written tests for ```foo``` you know who you are!
+* I will assume you have written tests for ```foo```...you know who you are!
 
 If ```foo``` does not fit in any category from ```lib/``` then you would create a new one.  
 

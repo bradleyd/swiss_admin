@@ -13,7 +13,7 @@ module SwissAdmin
 
       def run_plugin(klass, params)
         begin
-          generate_json(params[:plugin] =>  klass.send(params[:plugin]))
+          generate_json(params[:plugin] =>  klass.send(params[:plugin])[:raw])
         rescue NoMethodError => e
           generate_json(error: "Plugin not implemented correctly or does not exist - #{e}")
         end
@@ -30,7 +30,7 @@ module SwissAdmin
       @users        = SwissAdmin::User.active
       @load_average = SwissAdmin::Host.loadavg
       @cpus         = SwissAdmin::Hardware.cpus
-      @ip_addresses = SwissAdmin::Network.ip_addresses
+      @ip_addresses = SwissAdmin::Network::IP.addresses
       erb :info
     end
 

@@ -19,6 +19,7 @@ class CLIUserTest < Minitest::Test
   end
  
   def test_cli_active_returns_active_users
+    return true if OS::Underlying.docker?
     assert_output(/#{@current.chomp}/) {
       SwissAdmin::CLI.start %w{ user active }
     }

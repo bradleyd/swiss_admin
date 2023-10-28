@@ -1,4 +1,5 @@
 require "json"
+require "swiss_admin/utils/os"
 module SwissAdmin
   class Hardware
     # @example
@@ -25,22 +26,29 @@ module SwissAdmin
     # SwapTotal — The total amount of swap available, in kilobytes.
     # SwapFree — The total amount of swap free, in kilobytes.
     def self.memory
-      data = Hash[:json, "", :raw, "", :table, [[]]]
+      results =
+      case SwissAdmin::Utils::OS.platform
+      when /linux/
+        if File.readable?("/proc/meminfo")
+          IO.read("/proc/meminfo").scan(/([a-zA-Z]+):\W+(\d+)/)
+        else
+          $stdout.puts "There was an error reading meminfo"
+        end
+      when /darwin/
+        data = ::ShellTastic::Command.run("vm_stat -c 1").first
+        data[:output].scan(/([a-zA-Z]+):\W+(\d+)/)
+      else
+          $stdout.puts "There was an error getting memory on this host"
+      end
       human_readable_string = ""
-      memory = if File.readable?("/proc/meminfo")
-                 IO.read("/proc/meminfo").scan(/([a-zA-Z]+):\W+(\d+)/)
-               else
-                 # todo shell out and try free command
-                 [["no data available", 0]]
-               end
-      memory.each do |m|
+      results.each do |m|
          human_readable_string += m.join("=")
          human_readable_string += "\n"
       end
-      data[:raw] = human_readable_string
-      data[:json] = JSON.generate(memory.inject({}) { |a,d| a[d[0]] = d[1]; a })
-      data[:table] = [memory.inject({}) { |a,d| a[d[0]] = d[1]; a }]
-      data
+
+      json_out = JSON.generate(results.inject({}) { |a,d| a[d[0]] = d[1]; a })
+      table_out = [results.inject({}) { |a,d| a[d[0]] = d[1]; a }]
+      SwissAdmin::Utils::FormatGenerator.build(json: JSON.generate(json_out), raw: human_readable_string, table: table_out)
     end
   end
 end

@@ -3,22 +3,23 @@ module SwissAdmin
   module Commands
     class User < Thor
       namespace :user
+      class_option :format, :aliases => "-f", :desc => "Format the output", :default => "text"
+
 
       desc "current", "Current user"
       def current
-        $stdout.puts SwissAdmin::User.current
+        Formatter.output(SwissAdmin::User.current, options[:format])
       end
 
       desc "home", "Current user's home directory"
       def home
-        $stdout.puts SwissAdmin::User.home
+        Formatter.output(SwissAdmin::User.home, options[:format])
       end
 
       desc "active", "All active users"
       def active
-        $stdout.puts SwissAdmin::User.active[:output]
+        Formatter.output(SwissAdmin::User.active, options[:format])
       end
-
     end
   end
 end
