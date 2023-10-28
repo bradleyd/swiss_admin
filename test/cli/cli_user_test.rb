@@ -19,7 +19,7 @@ class CLIUserTest < Minitest::Test
   end
  
   def test_cli_active_returns_active_users
-    if SwissAdmin::Utils::OS.container? || env["GITHUB_ACTIONS"]
+    if SwissAdmin::Utils::OS.container? || ENV["GITHUB_ACTIONS"]
       return true
     end
     assert_output(/#{@current.chomp}/) {
