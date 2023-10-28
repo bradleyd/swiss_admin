@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: bundle install
       - name: Check ENV
-        run: env
+        run: echo $USER
       - name: Run tests
         run: bundle exec rake
 
