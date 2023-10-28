@@ -18,7 +18,7 @@ module SwissAdmin
     def self.active
       if SwissAdmin::Utils::OS.container?
         return SwissAdmin::Utils::FormatGenerator.build(json: JSON.generate({"user" => SwissAdmin::User.current}),
-        raw: SwissAdmin::User.current, table: [{"user" => SwissAdmin::User.current}])
+        raw: SwissAdmin::User.current[:raw], table: [{"user" => SwissAdmin::User.current}])
       end
       results =
       case SwissAdmin::Utils::OS.platform
