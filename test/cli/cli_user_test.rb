@@ -19,6 +19,7 @@ class CLIUserTest < Minitest::Test
   end
  
   def test_cli_active_returns_active_users
+    $stdout.puts SwissAdmin::Utils::OS.container?
     return true if SwissAdmin::Utils::OS.container?
     assert_output(/#{@current.chomp}/) {
       SwissAdmin::CLI.start %w{ user active }
