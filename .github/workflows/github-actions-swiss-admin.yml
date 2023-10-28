@@ -27,6 +27,8 @@ jobs:
           ruby-version: ${{ matrix.ruby-version }}
       - name: Install dependencies
         run: bundle install
+      - name: Check ENV
+        run: env
       - name: Run tests
         run: bundle exec rake
 

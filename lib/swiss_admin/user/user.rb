@@ -6,7 +6,7 @@ require "swiss_admin/utils/format_generator"
 module SwissAdmin
   class User
     def self.current
-      current_user = ENV["USER"] || Etc.getlogin || Etc.getpwuid.name
+      current_user = ENV["USER"] || Etc.getlogin || Etc.getpwuid.name || `whoami`
       SwissAdmin::Utils::FormatGenerator.build(json: JSON.generate({"current_user" => current_user}), raw: current_user, table: [{"current_user" => current_user}])
     end
 
