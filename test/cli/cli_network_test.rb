@@ -2,7 +2,7 @@ require_relative "../test_helper"
 require 'socket'
 
 
-class CLINetworkTest < MiniTest::Test
+class CLINetworkTest < Minitest::Test
   def setup
     @host = Socket.gethostname
     @first_ipv4 = Socket.ip_address_list.detect{|intf| intf.ipv4_private?}.ip_address

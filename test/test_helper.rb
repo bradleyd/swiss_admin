@@ -14,7 +14,8 @@ module SwissAdmin
     end
 
     def self.first_ipv4
-      Socket.ip_address_list.detect{|intf| intf.ipv4_private?}.ip_address
+      ipv4 = Socket.ip_address_list.detect{|intf| intf.ipv4_private?}.ip_address
+      SwissAdmin::Utils::FormatGenerator.build(json: JSON.generate({ip_address: ipv4}), raw: ipv4, table: [{ip_address: ipv4}])
     end
 
     def self.current_user

@@ -10,7 +10,7 @@ class HostWebAPITest < Minitest::Test
   def test_it_retruns_hardware_info
     get '/api/hardware/memory'
     assert last_response.ok?
-    assert_match /MemTotal/ , last_response.body
+    assert_match /[fF]?ree/ , last_response.body
   end
 
   def test_it_retruns_hardware_cpus

@@ -1,6 +1,7 @@
 require_relative "../test_helper"
+require "minitest/autorun"
 
-class CLIHostTest < MiniTest::Test
+class CLIHostTest < Minitest::Test
   def setup
     @host = Socket.gethostname
   end

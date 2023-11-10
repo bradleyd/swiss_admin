@@ -15,14 +15,10 @@ I find it best to install swissadmin in your global gemset.
 ## Things that make swissadmin cool.
 
 1. It offers just the right amount of information about the system/host your are running it on.
-2. Provides a web server for REST calls.
-3. Pretty simple to add new commands
-4. Provides a DRb server to query host for information. (see todo)
-5. Everytime you use it puppies and rainbows shoot into the sky.
+2. Provides a web server that you can query over the network.
+3. Easy to add new commands.
 
-There a tons of tools that do similar stuff, but I find them to contain way to much information.
-I do not have the brain capacity to remember all those arguments and parsing features. 
-
+There are tons of tools that do similar stuff, but I find them to contain way too much information.
 
 ## Installation
 
@@ -73,6 +69,25 @@ Buffers            164064
 .....
 ```
 
+With formatting.
+```ruby 
+swissadmin hardware cpus -f json 
+{\"cpus\":10}
+```
+
+Table output
+
+```ruby 
+swissadmin hardware cpus -f table
+  +------+
+  | cpus |
+  +------+
+  | 10   |
+  +------+
+```
+
+
+
 ### Host
 
 Returns information about the host
@@ -105,10 +120,22 @@ Commands:
 ```
 
 ```ruby 
-swissadmin host ip_addresses #=> {:ip_address=>"127.0.0.1", :name=>["localhost", "0"]}
-{:ip_address=>"192.168.4.34", :name=>["bradleyd-900X4C.local", "0"]}
-{:ip_address=>"::1", :name=>["ip6-localhost", "0"]}
-{:ip_address=>"fe80::c685:8ff:fe72:beab%wlan0", :name=>["fe80::c685:8ff:fe72:beab%wlan0", "0"]}
+swissadmin network ip_addresses
+name=localhost,address=127.0.0.1
+name=9dc94f18162e,address=172.17.0.2
+```
+
+Table view
+
+```ruby
+swissadmin network ip_addresses -f table
+  +------------+--------------+
+  | ip_address | name         |
+  +------------+--------------+
+  | 127.0.0.1  | localhost    |
+  +------------+--------------+
+  | 172.17.0.2 | 9dc94f18162e |
+  +------------+--------------
 ```
 
 ```ruby 
@@ -167,102 +194,6 @@ Every CLI command can be accessed via the REST API
 
 ```ruby
 curl localhost:8080/api/host/loadavg #=> {"load_average":"0.29 0.29 0.28 2/972 27659\n"}
-```
-
-## Add a new command
-
-### This is a work in progress and might not be worth a dam
-
-To add a new command you must understand the directory structures of ```lib/``` and ```cli/```
-
-### lib/
-
-```bash
-lib/swiss_admin/
-├── hardware
-│   ├── cpus.rb
-│   └── memory.rb
-├── host
-│   └── host.rb
-├── network
-│   └── network.rb
-├── user
-│   └── user.rb
-```
-
-### cli/
-```bash
-lib/swiss_admin/cli/
-├── cli.rb
-├── hardware_cli.rb
-├── host_cli.rb
-├── network_cli.rb
-└── user_cli.rb
-```
-
-Let's say you have a need for a command called--you guessed it--```foo```
-
-```foo``` will give you the ultimate answer.
-
-* I will assume you have written tests for ```foo``` you know who you are!
-
-If ```foo``` does not fit in any category from ```lib/``` then you would create a new one.  
-
-Create a file and directory called foo and adjust to your liking.
-
-```ruby
-# foo/foo.rb
-module SwissAdmin
-  class Foo
-    def self.answer
-      "42"
-    end
-  end
-end
-```
-
-Run your tests...green I presume.
-
-Create another file under ```cli/``` cleverly called ```foo_cli.rb```
-
-```ruby 
-module SwissAdmin
-  module Commands
-    class Foo < Thor
-      namespace :foo
-
-      desc "answer", "ultimate answer"
-      def answer
-        $stdout.puts SwissAdmin::Foo.answer
-      end
-
-    end
-  end
-end
-```
-
-* Note, we are calling ```Foo``` class from ```lib/``` instead of just creating it here
-* This is so we can use ```swissadmin``` as library in another project and forgo the CLI
-
-
-Next, we need to tell ```CLI``` about this new command.
-
-```ruby
-#lib/cli/cli.rb
-
-module SwissAdmin
-  class CLI < Thor
-    #....snippet....
-    desc "foo SUBCOMMAND", "Returns the ultimate answer"
-    subcommand "foo", SwissAdmin::Commands::Foo
-  end
-end
-```
-
-This will give ```swissadmin``` the ultimate power and bestow it upon you ;)
-
-```ruby
-swissadmin foo answer #=> 42
 ```
 
 ### TODO

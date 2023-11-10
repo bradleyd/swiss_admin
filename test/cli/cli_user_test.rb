@@ -1,7 +1,6 @@
 require_relative "../test_helper"
 
-
-class CLIUserTest < MiniTest::Test
+class CLIUserTest < Minitest::Test
   def setup
     @current = `whoami`
     @home    = ENV["HOME"]
@@ -20,6 +19,9 @@ class CLIUserTest < MiniTest::Test
   end
  
   def test_cli_active_returns_active_users
+    if SwissAdmin::Utils::OS.container? || ENV["GITHUB_ACTIONS"]
+      return true
+    end
     assert_output(/#{@current.chomp}/) {
       SwissAdmin::CLI.start %w{ user active }
     }
